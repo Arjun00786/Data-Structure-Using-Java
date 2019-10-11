@@ -1,0 +1,127 @@
+
+package Arjun;
+import java.util.*;
+class Node 
+{
+	int data;
+	Node left;
+	Node right;
+}
+
+public class Tree
+{
+	Node root;
+	void insert(int data)
+	{
+		Node parent;
+		Node current;
+		Node n=new Node();
+		n.data=data;
+		n.left=null;
+		n.right=null;
+		
+		if(root==null)
+		{
+			root=n;
+		}
+		else
+		{
+			parent=null;
+			current=root;
+			while(true)
+			{
+				parent =current;
+				
+				if(data<parent.data)
+				{
+					current=current.left;
+					if(current==null)
+					{
+						parent.left=n;
+						return;
+					}
+				}
+				else
+				{
+					current=current.right;
+					if(current==null)
+					{
+						parent.right=n;
+						return;
+					}
+				}
+			} 
+		}
+	}
+	
+	void Preorder(Node n)
+	{
+		if(n==null)
+		{
+			return;
+		}
+		System.out.println(n.data);
+		Preorder(n.left);
+		inorder(n.right);
+	}
+	
+	void inorder(Node root)
+	{
+		if(root==null)
+		{
+			return;
+		}
+		inorder(root.left);
+		System.out.println(root.data);
+		inorder(root.right);
+	}
+	
+	void Postorder(Node n)
+	{
+		if(n==null)
+		{
+			return;
+		}
+		inorder(n.left);
+		
+		inorder(n.right);
+		System.out.println(n.data);
+	}
+	
+	    void inorder()
+	    {    
+	    	inorder(root);  
+	    } 
+	    void Preorder()
+	    {    
+	    	Preorder(root);  
+	    }
+	    void Postorder()
+	    {    
+	    	Postorder(root);  
+	    }
+	    
+	    
+	public static void main(String[] args) 
+	{
+		
+		Scanner sc=new Scanner(System.in);
+		Tree obj=new Tree();
+		obj.insert(30);
+		obj.insert(50);
+		obj.insert(40);
+		obj.insert(20);
+		obj.insert(10);
+		obj.insert(5);
+		obj.insert(80);
+		
+		obj.Preorder();
+		
+		System.out.println();
+		obj.inorder();
+		
+		System.out.println();
+		obj.Postorder();
+		
+	}
+}
